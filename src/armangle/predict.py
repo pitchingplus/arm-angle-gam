@@ -17,8 +17,8 @@ def predict(
         shoulder_x_model: A fitted model for shoulder x-coordinate prediction.
         shoulder_z_model: A fitted model for shoulder z-coordinate prediction.
         release_features: A NumPy array with two columns:
-            - Column 0: relative_release_ball_x
-            - Column 1: release_ball_z
+            - 0: relative_release_ball_x
+            - 1: release_ball_z
         epsilon: A small value to avoid division by zero.
 
     Returns:
