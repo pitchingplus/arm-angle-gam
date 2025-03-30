@@ -2,6 +2,10 @@
 
 This project implements a machine learning model to predict the ball angle in baseball pitches using Generalized Additive Models (GAMs) and hyperparameter optimization with Optuna.
 
+The model is trained on data from MLB's Statcast system, specifically focusing on the release point of the ball and the corresponding shoulder angles.
+
+R² is ~0.79, so the model is not perfect, but it is a good start.
+
 ## Workflow
 
 1. **Data Loading and Preprocessing**
@@ -78,19 +82,19 @@ predicted_arm_angle = predict(
 
 ## Model Components
 
-1**GAM for shoulder_x**: Predicts the relative shoulder X coordinate. Saved and loaded using `joblib` from `SHOULDER_X_MODEL_PATH` setting.
-2**GAM for shoulder_z**: Predicts the shoulder Z coordinate. Saved and loaded using `joblib` from `SHOULDER_Z_MODEL_PATH` setting.
+1. **GAM for shoulder_x**: Predicts the relative shoulder X coordinate. Saved and loaded using `joblib` from `SHOULDER_X_MODEL_PATH` setting.
+2. **GAM for shoulder_z**: Predicts the shoulder Z coordinate. Saved and loaded using `joblib` from `SHOULDER_Z_MODEL_PATH` setting.
 
 ## Configuration
 
 The `settings` object from `armangle.conf` is used to configure various parameters such as:
-- EPSILON: Used to avoid division by zero in angle calculations
-- TEST_SIZE: Proportion of data to use for testing
-- RANDOM_STATE: Seed for random number generation
-- N_SPLINES_MIN and N_SPLINES_MAX: Range for number of splines in GAM models
-- LAM_MIN and LAM_MAX: Range for lambda (regularization) parameter in GAM models
-- N_TRIALS: Number of trials for Optuna optimization
-- SHOULDER_X_MODEL_PATH: Path to save the shoulder-x model
-- SHOULDER_Z_MODEL_PATH: Path to save the shoulder-z model
+- `EPSILON`: Used to avoid division by zero in angle calculations
+- `TEST_SIZE`: Proportion of data to use for testing
+- `RANDOM_STATE`: Seed for random number generation
+- `N_SPLINES_MIN` and `N_SPLINES_MAX`: Range for number of splines in GAM models
+- `LAM_MIN` and `LAM_MAX`: Range for lambda (regularization) parameter in GAM models
+- `N_TRIALS`: Number of trials for Optuna optimization
+- `SHOULDER_X_MODEL_PATH`: Path to save the shoulder-x model
+- `SHOULDER_Z_MODEL_PATH`: Path to save the shoulder-z model
 
 Adjust these settings in the `conf.py` file to fine-tune the training process.
