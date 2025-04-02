@@ -1,7 +1,7 @@
 [project]
 name = "armangle"
-version = "0.1.0"
-description = "Compute arm angle from publicly available release point data"
+version = "0.1.1"
+description = "Compute the arm angle of a pitch from publicly available release point and shoulder data"
 readme = "README.md"
 authors = [
     { name = "Matt Dennewitz", email = "mattdennewitz@gmail.com" }
