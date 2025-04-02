@@ -11,6 +11,7 @@ from pygam import LinearGAM, s
 import joblib
 
 from armangle.conf import settings
+from armangle.gorymath import calculate_arm_angle
 from armangle.predict import predict as predict_arm_angle
 
 
@@ -101,8 +102,15 @@ class OptunaOptimizer:
         predicted_shoulder_x = gam_shoulder_x.predict(self.test_features)
         predicted_shoulder_z = gam_shoulder_z.predict(self.test_features)
 
-        predicted_angle_degrees = self._calculate_angle(
-            predicted_shoulder_x, predicted_shoulder_z
+        release_ball_x_test = self.test_features[:, 0]
+        release_ball_z_test = self.test_features[:, 1]
+
+        predicted_angle_degrees = calculate_arm_angle(
+            release_ball_x_test,
+            release_ball_z_test,
+            predicted_shoulder_x,
+            predicted_shoulder_z,
+            epsilon=settings.EPSILON,
         )
 
         return np.sqrt(
@@ -146,7 +154,9 @@ class OptunaOptimizer:
             )
         )
 
-    def _calculate_angle(self, predicted_shoulder_x, predicted_shoulder_z) -> float:
+    def _calculate_angle(
+        self, predicted_shoulder_x, predicted_shoulder_z, epsilon=settings.EPSILON
+    ) -> float:
         """
         Calculate the arm angle based on known release and predicted shoulder coordinates
 
@@ -157,16 +167,6 @@ class OptunaOptimizer:
         Returns:
             float: The predicted arm angle in degrees
         """
-
-        release_ball_x_test = self.test_features[:, 0]
-        release_ball_z_test = self.test_features[:, 1]
-
-        predicted_angle_radians = np.arctan(
-            (release_ball_z_test - predicted_shoulder_z)
-            / (release_ball_x_test - predicted_shoulder_x + settings.EPSILON)
-        )
-
-        return np.degrees(predicted_angle_radians)
 
     def optimize(self) -> dict[str, Any]:
         """

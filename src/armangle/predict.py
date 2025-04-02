@@ -2,6 +2,7 @@ import numpy as np
 from pygam import LinearGAM
 
 from armangle.conf import settings
+from armangle.gorymath import calculate_arm_angle
 
 
 def predict(
@@ -34,10 +35,10 @@ def predict(
     relative_release_ball_x = release_features[:, 0]
     release_ball_z = release_features[:, 1]
 
-    predicted_angle_radians = np.arctan(
-        (release_ball_z - predicted_shoulder_z)
-        / (relative_release_ball_x - predicted_shoulder_x + epsilon)
+    return calculate_arm_angle(
+        release_ball_x=relative_release_ball_x,
+        release_ball_z=release_ball_z,
+        predicted_shoulder_x=predicted_shoulder_x,
+        predicted_shoulder_z=predicted_shoulder_z,
+        epsilon=epsilon,
     )
-    predicted_angle_degrees = np.degrees(predicted_angle_radians)
-
-    return predicted_angle_degrees
