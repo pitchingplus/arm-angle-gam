@@ -1,4 +1,5 @@
 import pathlib
+from typing import Union
 
 import joblib
 import numpy as np
@@ -7,7 +8,7 @@ from armangle.conf import settings
 from armangle.gorymath import calculate_arm_angle
 
 
-TModelOrPath = "LinearGAM" | pathlib.Path
+TModelOrPath = Union["LinearGAM", pathlib.Path]
 
 
 def predict(
