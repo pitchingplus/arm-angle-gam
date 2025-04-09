@@ -230,6 +230,7 @@ dependencies = [
     { name = "loguru" },
     { name = "pydantic" },
     { name = "pydantic-settings" },
+    { name = "pygam" },
 ]
 
 [package.dev-dependencies]
@@ -240,7 +241,6 @@ dev = [
 train = [
     { name = "optuna" },
     { name = "polars" },
-    { name = "pygam" },
     { name = "scikit-learn" },
 ]
 
@@ -250,6 +250,7 @@ requires-dist = [
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "pydantic", specifier = ">=2.8.2" },
     { name = "pydantic-settings", specifier = ">=2.8.1" },
+    { name = "pygam", specifier = ">=0.9.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -260,7 +261,6 @@ dev = [
 train = [
     { name = "optuna", specifier = ">=4.2.1" },
     { name = "polars", specifier = ">=1.26.0" },
-    { name = "pygam", specifier = ">=0.9.1" },
     { name = "scikit-learn", specifier = ">=1.6.1" },
 ]
 

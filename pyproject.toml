@@ -1,6 +1,6 @@
 [project]
 name = "armangle"
-version = "0.2.1"
+version = "0.2.2"
 description = "Compute the arm angle of a pitch from publicly available release point and shoulder data"
 readme = "README.md"
 authors = [
@@ -12,6 +12,7 @@ dependencies = [
     "loguru>=0.7.3",
     "pydantic-settings>=2.8.1",
     "pydantic>=2.8.2",
+    "pygam>=0.9.1",
 ]
 
 [build-system]
@@ -26,6 +27,5 @@ dev = [
 train = [
     "optuna>=4.2.1",
     "polars>=1.26.0",
-    "pygam>=0.9.1",
     "scikit-learn>=1.6.1",
 ]
